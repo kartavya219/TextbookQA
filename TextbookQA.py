@@ -10,7 +10,6 @@ from langchain_huggingface import HuggingFaceEndpoint
 from langchain_groq import ChatGroq
 
 
-## Uncomment the following files if you're not using pipenv as your virtual environment manager
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
@@ -63,11 +62,8 @@ def main():
 
                 Start the answer directly. No small talk please.
                 """
-        
-        #HUGGINGFACE_REPO_ID="mistralai/Mistral-7B-Instruct-v0.3" # PAID
-        #HF_TOKEN=os.environ.get("HF_TOKEN")  
+    
 
-        #TODO: Create a Groq API key and add it to .env file
         
         try: 
             vectorstore=get_vectorstore()
@@ -77,7 +73,7 @@ def main():
             qa_chain = RetrievalQA.from_chain_type(
                 llm=ChatGroq(
                     model_name="openai/gpt-oss-20b",
-                    temperature=0.8,
+                    temperature=0.2,
                     groq_api_key=os.environ["GROQ_API_KEY"],
                 ),
                 chain_type="stuff",
